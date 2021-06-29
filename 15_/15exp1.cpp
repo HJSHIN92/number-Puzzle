@@ -38,49 +38,5 @@ int main(){
         iNumber[idx2] = itemp;
     }
 
-    int iPuzzle[5][5] = {};
-     
-    // for(int i = 0; i < 25; ++i)
-    // {
-    //     for(int j = 0; j < 5; ++j)
-    //     {
-    //         for(int k = 0; k < 5; ++k)
-    //         {
-    //             iPuzzle[j][k] = iNumber[i];
-    //             cout
-    //         }
-    //     }
-    // }
-
-    // 랜덤하게 배열하기
-    // for(int i = 0; i < 25; ++i)
-    // {
-    //     int iXpos = i/5;
-    //     int iYpos = i%5;
-    //     iPuzzle[iXpos][iYpos] = iNumber[i];
-    //     cout << iPuzzle[iXpos][iYpos] << "\t";
-    // }
-
-
-/*
-0  1  2  3  4
-5  6  7  8  9
-10 11 12 13 14
-15 16 17 18 19
-20 21 22 23 *
-*/
-
-    for(int i = 0; i < 25; i += 5) // i는 행, 0 5 10 15 20
-    {
-        for(int j = 0; j < (i+5); ++j) //j는 열 (1-4)(5-9)(10-14)(15-19)(20-23)
-        {
-        int iXpos = i/5;
-        int iYpos = j%5;
-        iPuzzle[iXpos][iYpos] = iNumber[i+j];
-        cout << iPuzzle[iXpos][iYpos] << "\t";
-        }
-    cout << endl;
-    }
-
     
 }
