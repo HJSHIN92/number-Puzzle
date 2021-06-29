@@ -47,7 +47,15 @@ int main(){
             // j for문 = 가로칸
             for(int j = 0; j < 5; ++j)
             {
-                cout << iNumber[i*5 +j] << "\t";
+                // 특정 문자로 표시되게 하기.
+                if(iNumber[i*5 +j] == INT_MAX)
+                {
+                    cout << "*\t";
+                }
+                else
+                {
+                    cout << iNumber[i*5 +j] << "\t";
+                }
             }
             cout << endl;
         }
@@ -55,12 +63,27 @@ int main(){
         // 퍼즐은 INT_MAX 값을 갖는 퍼즐위치로만 이동할 수 있다.
         // iNumber[i] = 
         
-        int iPlayer, iBlank;
+        int iPlayer;
+        int iBlank = INT_MAX;
+        
         cin >> iPlayer >> iBlank;
         if(iPlayer==00){
             cout << "게임을 종료합니다" << endl;
             exit(0);
         }
+        // 1) INT_MAX값이 있지 않으면 바꿀 수 없다.
+        else if(iNumber[iBlank] != INT_MAX)
+        {
+            cout << " 빈 칸이 아닙니다. 다시 선택해주십시오. " << endl;
+            continue;
+        }
+        else if(!(iPlayer >= 0 && iPlayer <= 24 && iBlank >= 0 && iBlank <= 24))
+        {
+            cout << "0~24 사이의 값으로 다시 입력해주세요" << endl;
+            continue;
+        }
+
+        // 위치바꾸기
         iNumber[iBlank] = iNumber[iPlayer];
         iNumber[iPlayer] = INT_MAX;
 
