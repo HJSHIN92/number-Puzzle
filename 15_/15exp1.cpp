@@ -38,7 +38,7 @@ int main(){
         iNumber[idx2] = itemp;
     }
 
-    int iPuzzle[5][5];
+    int iPuzzle[5][5] = {};
      
     // for(int i = 0; i < 25; ++i)
     // {
@@ -70,9 +70,9 @@ int main(){
 20 21 22 23 *
 */
 
-    for(int i = 0; i < 25; i+=5) // i는 행
+    for(int i = 0; i < 25; i += 5) // i는 행, 0 5 10 15 20
     {
-        for(int j = 0; j < (i+5); ++j) //j는 열
+        for(int j = 0; j < (i+5); ++j) //j는 열 (1-4)(5-9)(10-14)(15-19)(20-23)
         {
         int iXpos = i/5;
         int iYpos = j%5;
@@ -81,4 +81,6 @@ int main(){
         }
     cout << endl;
     }
+
+    
 }
