@@ -38,15 +38,31 @@ int main(){
         iNumber[idx2] = itemp;
     }
 
-    // i for문 = 세로칸
-    for(int i = 0; i < 5; ++i)
+
+    while (true)
     {
-        // j for문 = 가로칸
-        for(int j = 0; j < 5; ++j)
+        // i for문 = 세로칸
+        for(int i = 0; i < 5; ++i)
         {
-            cout << iNumber[i*5 +j] << "\t";
+            // j for문 = 가로칸
+            for(int j = 0; j < 5; ++j)
+            {
+                cout << iNumber[i*5 +j] << "\t";
+            }
+            cout << endl;
         }
-        cout << endl;
+        cout << "옮기고 싶은 퍼즐과 빈칸위치를 입력하세요. (종료 : 00)" << endl;
+        // 퍼즐은 INT_MAX 값을 갖는 퍼즐위치로만 이동할 수 있다.
+        // iNumber[i] = 
+        
+        int iPlayer, iBlank;
+        cin >> iPlayer >> iBlank;
+        if(iPlayer==00){
+            cout << "게임을 종료합니다" << endl;
+            exit(0);
+        }
+        iNumber[iBlank] = iNumber[iPlayer];
+        iNumber[iPlayer] = INT_MAX;
+
+        }
     }
-    
-}
