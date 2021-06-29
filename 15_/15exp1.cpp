@@ -38,5 +38,15 @@ int main(){
         iNumber[idx2] = itemp;
     }
 
+    // i for문 = 세로칸
+    for(int i = 0; i < 5; ++i)
+    {
+        // j for문 = 가로칸
+        for(int j = 0; j < 5; ++j)
+        {
+            cout << iNumber[i*5 +j] << "\t";
+        }
+        cout << endl;
+    }
     
 }
