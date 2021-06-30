@@ -68,18 +68,32 @@ int main(){
     // 해당 조건을 만족해야 true, 아니면 false
     // if( bool == true ) { ++ ver, ho, dia }
     int vertical, horizon, diagonal;
+    bool bver, bhor, bdia = true;
+    
     // 1) 세로빙고
-    for(int i = 0; i < 5; ++i)
-    {
-        // iNumber[i] == inumber[i+ 5*j]
-        if(iNumber[i] == iNumber[i+5] == iNumber[i+10] == iNumber[i+15] == iNumber[i+20])
+    for(int i = 0; i < 5; ++i)     // 0, 1, 2, 3, 4
+    {   for(int j = 0; j < 5; ++j) // 0, 1, 2, 3, 4
         {
-            ++vertical;
+            if(iNumber[i] != iNumber[i + 5*j])
+            {
+                bver = false;
+                break;
+            }
         }
-        if
+/* 1) 세로빙고
+if(iNumber[i] == inumber[5*(j+1)])
+    {
+    ++vertical;
+    }
+2) 가로빙고
+if( (i%5==0 && (i+5)%5 ==0)
+   && (iNumber[i]==iNumber[j+1]) )
 
-
-            
+3) 대각선 빙고
+if( (iNumber[i+ 6*j])
+    && (iNumber[4*(j+1)])))
+    ++ diagonal
+*/       
     }
 
 }
