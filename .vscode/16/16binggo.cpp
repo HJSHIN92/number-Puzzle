@@ -39,7 +39,7 @@ int main(){
         break;
     }
     // 2. 1~24 사이의 숫자가 아닌 경우
-    else if(!(iInput > 0 && iInput < 25))
+    else if(!(iInput > 0 && iInput < 26))
     {
         cout << "1부터 24까지의 숫자로 다시 입력하세요" << endl;
         continue;
@@ -50,11 +50,12 @@ int main(){
     {
         for(int j = 0; j < 5; ++j)
         {
-            if(iNumber[i*5 + j]==iInput)
+            if((iNumber[i*5 + j]==iInput)||(iNumber[i*5 + j]==INT_MAX))
             {
                 cout << " * " << "\t";
+                iNumber[i*5 + j] = INT_MAX;
             }
-            else
+            else if(iNumber[i*5 + j] != INT_MAX)
             {
                 cout << iNumber[i*5 +j] << "\t";
             }
