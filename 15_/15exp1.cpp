@@ -38,6 +38,7 @@ int main(){
         iNumber[idx2] = itemp;
     }
 
+<<<<<<< HEAD
     int iPuzzle[5][5];
      
     // for(int i = 0; i < 25; ++i)
@@ -81,4 +82,7 @@ int main(){
         }
     cout << endl;
     }
+=======
+    
+>>>>>>> parent of 6ec7a84 (make array)
 }

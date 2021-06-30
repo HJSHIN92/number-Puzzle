@@ -1,5 +1,8 @@
 #include <iostream>
 #include <time.h>
+// 맥이라서 오류남 ; 윈도우에서만 사용가능.
+// #include <conio.h>
+
 using namespace std;
 
 
@@ -59,9 +62,9 @@ int main(){
             }
             cout << endl;
         }
+
         cout << "옮기고 싶은 퍼즐과 빈칸위치를 입력하세요. (종료 : 00)" << endl;
         // 퍼즐은 INT_MAX 값을 갖는 퍼즐위치로만 이동할 수 있다.
-        // iNumber[i] = 
         
         int iPlayer;
         int iBlank = INT_MAX;
