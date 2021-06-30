@@ -62,6 +62,25 @@ int main(){
         }
         cout << endl;
     }
+
+    // * 갯수를 체크해서 빙고 줄 수를 체크한다.
+    // boolean을 사용해서 true로 선언한 뒤
+    // 해당 조건을 만족해야 true, 아니면 false
+    // if( bool == true ) { ++ ver, ho, dia }
+    int vertical, horizon, diagonal;
+    // 1) 세로빙고
+    for(int i = 0; i < 5; ++i)
+    {
+        // iNumber[i] == inumber[i+ 5*j]
+        if(iNumber[i] == iNumber[i+5] == iNumber[i+10] == iNumber[i+15] == iNumber[i+20])
+        {
+            ++vertical;
+        }
+        if
+
+
             
-        }        
     }
+
+}
+}
