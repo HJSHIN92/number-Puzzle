@@ -45,16 +45,6 @@ int main(){
         continue;
     }
 
-    int iSelected[25] = {};
-    for(int i = 0; i < 25; ++i)
-    {
-        iSelected[i] = i + 1;
-        if(iSelected[i] == iInput)
-        {
-            cout << " 중복된 숫자입니다. 다시 선택해주세요" << endl;
-            continue;
-        }
-    }
     // 빙고판 보여주기
     for(int i = 0; i < 5; ++i)
     {
@@ -64,7 +54,6 @@ int main(){
             {
                 cout << " * " << "\t";
                 iNumber[i*5 + j] = INT_MAX;
-                iNumber[i*5 + j] = iSelected[i*5 + j];
             }
             else if(iNumber[i*5 + j] != INT_MAX)
             {
@@ -103,14 +92,7 @@ int main(){
             ++horizon;
         }
 //대각선 빙고
-    // if(iNumber[0] == iNumber[6*i] == iNumber[6*2*i] == iNumber[6*3*i] == iNumber[6*4*i])
-    //     {
-    //         ++diagonal;
-    //     }
-    // if(iNumber[4] == iNumber[4*2*i] == iNumber[4*3*i] == iNumber[4*4*i] == iNumber[4*5*i])
-    //     {
-    //         ++diagonal;
-    //     }
+
     }
     if(iNumber[0] == iNumber[6] == iNumber[12] == iNumber[18] == iNumber[24])
         {
