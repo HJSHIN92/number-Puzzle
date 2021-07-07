@@ -60,6 +60,33 @@ enum STORE_MENU
     SM_BACK
 };
 
+enum STORE_BUY_MENU
+{
+    SB_NONE,
+    SB_READ,
+    SB_BUY,
+    SB_SELL,
+    SB_BACK
+};
+
+enum STORE_WEAPON_MENU
+{
+    SW_NONE,
+    SW_SHORT_SWORD,
+    SW_SHORT_BOW,
+    SW_SHORT_STICK,
+    SW_BACK
+};
+
+enum STORE_ARMOR_MENU
+{
+    SA_NONE,
+    SA_SOFT_ARMOR,
+    SA_HARD_ARMOR,
+    SA_LEGEND_ARMOR,
+    SA_BACK
+};
+
 struct _tagItem
 {
     char strName[NAME_SIZE];
@@ -80,7 +107,7 @@ struct _tagInventory
     int iGold;
 };
 
-struct _tagPlayer
+struct _tagPlayer 
 {
     char strName[NAME_SIZE];
     char strJobName[NAME_SIZE];
@@ -463,6 +490,8 @@ int main(){
                 {
                     break;
                 }
+
+                _tagItem tStoreItmes = {};
                 
                 switch (iMenu)
                 {
@@ -472,6 +501,91 @@ int main(){
                         system("clear");
                         cout << "============== 무기 상점 ===============" << endl;
                         // 판매 목록을 보여준다
+                        cout<<  "1. 숏소드 "<< endl;
+                        cout<<  "2. 숏보우"<< endl;
+                        cout<<  "3. 숏스틱"<< endl;
+                        cout<<  "4. 뒤로가기"<< endl;
+                        cout << " 메뉴를 골라주세요 " << endl;
+                        cin >> iMenu;
+
+                        if(cin.fail())
+                        {
+                            cin.clear();
+                            cin.ignore(1024, '\n');
+                            continue;
+                        }
+
+                        if(iMenu == SW_BACK)
+                            break;
+                        
+                        switch (iMenu)
+                        {
+                        case SW_SHORT_SWORD:
+                            strcpy(tStoreItmes.strName, "숏 소드");
+                            strcpy(tStoreItmes.strTypeName, "한손검");
+                            tStoreItmes.eType = IT_WEAPON;
+                            tStoreItmes.iMin = 20;
+                            tStoreItmes.iMax = 40;
+                            tStoreItmes.iPrice = 7000;
+                            tStoreItmes.iSell = 3500;
+                            strcpy(tStoreItmes.strDesc, "기사가 사용할 수 있는 한손 검이다. 가격이 저렴하다");
+
+                            cout << "장비 이름 : " << tStoreItmes.strName << endl;
+                            cout << "장비 타입 : " << tStoreItmes.strTypeName << endl;
+                            cout << "최소 데미지 : " << tStoreItmes.iMin << endl;
+                            cout << "최대 데미지 : " << tStoreItmes.iMax << endl;
+                            cout << "살 때 가격 : " << tStoreItmes.iPrice << endl;
+                            cout << "팔 때 가격 : " << tStoreItmes.iSell << endl << endl;
+
+                            cout << "장비착용 전 후 비교"<< endl;
+                            cout << "공격력(전) : " << tPlayer.iAttackMin << " ~ " << tPlayer.iAttackMax << endl;
+                            cout << "공격력(후) : " << tPlayer.iAttackMin + tStoreItmes.iMin << " ~ " << tPlayer.iAttackMax + tStoreItmes.iMax << endl << endl << endl;
+
+                            cout <<"현재 소지금액 :" << tPlayer.tInventory.iGold << endl;
+                            cout << " 1. 구매한다 " << endl;
+                            cout << " 2. 판매한다 " << endl;
+                            cout << " 3. 뒤로가기 " << endl;
+                            cin >> iMenu;
+
+                            if(iMenu == 1)
+                            {
+                                if(tPlayer.tInventory.iGold >= tStoreItmes.iPrice)
+                                {
+                                    tPlayer.tInventory.iGold -= tStoreItmes.iPrice;
+                                    cout << "물건을 구매했습니다. 현재 골드 : " << tPlayer.tInventory.iGold << endl;
+                                    ++tPlayer.tInventory.iItemCount;
+                                    // tPlayer.tInventory.tItem[tPlayer.tInventory.iItemCount];
+                                    cout << "다음과 같은 능력치 변화가 있었습니다" << endl;
+                                    tPlayer.iAttackMin += tStoreItmes.iMin;
+                                    tPlayer.iAttackMax += tStoreItmes.iMax;
+                                    cout << "공격력 : " << tPlayer.iAttackMin << " ~ " << tPlayer.iAttackMax << endl;
+ 
+                                    cout << "다시 상점으로 돌아가려면 1을 눌러주세요"<< endl;
+                                    cin >> iMenu;
+                                    if(iMenu == 1)
+                                        continue;
+                                }
+                                else if(tPlayer.tInventory.iGold < tStoreItmes.iPrice)
+                                {
+                                    cout << "골드가 부족합니다 "<< endl;
+                                    cout << "다시 상점으로 돌아가려면 1을 눌러주세요"<< endl;
+                                    cin >> iMenu;
+                                    if(iMenu == 1)
+                                        continue;
+                                }
+                            }
+
+                        case SW_SHORT_BOW:
+                            /* code */
+                            break;
+                        case SW_SHORT_STICK:
+                            /* code */
+                            break;
+                        
+                        default:
+                            break;
+                        }
+                        
                         
                     }
                     
@@ -489,7 +603,48 @@ int main(){
             
             break;
         case MM_INVENTORY:
-            /* code */
+            while (true)
+            {
+                system("clear");
+                cout << "============== 인벤토리 ===============" << endl;
+                cout << "1. 가방을 본다" << endl;
+                cout << "2. 뒤로가기" << endl;
+                cin >> iMenu;
+
+                if(cin.fail())
+                {
+                    cin.clear();
+                    cin.ignore(1024, '\n');
+                    continue;
+                }
+
+                if(iMenu == 1)
+                {
+                system("clear");
+                cout << "현재 인벤토리 : " << tPlayer.tInventory.iItemCount << " / " << INVENTORY_MAX << endl;
+                cout << "아이템 목록" << endl;
+                 _tagItem tItem[INVENTORY_MAX]= {};
+
+                // for(int i = 0; i < INVENTORY_MAX; ++i)
+                // {
+                //     cout << i << "번째 " << tPlayer.tInventory.tItem[i] << endl;
+                // }
+
+                cout << "뒤로 가려면 1을 눌러주세요" << endl;
+                cin >> iMenu;
+                if(iMenu==1)
+                {
+                    continue;
+                }}else if(iMenu==2)
+                {
+                    break;
+                }
+
+
+                
+
+            }
+            
             break;
         
         default:
