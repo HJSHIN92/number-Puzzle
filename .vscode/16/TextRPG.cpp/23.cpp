@@ -41,6 +41,8 @@ enum BATTLE
 #define NAME_SIZE 32
 #define ITEM_DESC_LENGTH 512
 #define INVENTORY_MAX 20
+#define STORE_WEAPON_MAX 3
+#define STORE_ARMOR_MAX 3
 
 enum ITEM_TYPE
 {
@@ -232,6 +234,13 @@ int main(){
     tMonsterArr[2].iExp =  30000;
     tMonsterArr[2].iGoldMin = 20000;
     tMonsterArr[2].iGoldMax = 50000;
+
+// 상점에서 판매할 아이템 목록을 생성한다.
+    _tagItem tStoreWeapon[STORE_WEAPON_MAX] = {};
+    _tagItem tStoreArmor[STORE_ARMOR_MAX] = {};
+
+// 각 아이템 정보들을 설정해준다.
+
 
     while (true)
     {
@@ -455,6 +464,26 @@ int main(){
                     break;
                 }
                 
+                switch (iMenu)
+                {
+                case SM_WEAPON:
+                    while (true)
+                    {
+                        system("clear");
+                        cout << "============== 무기 상점 ===============" << endl;
+                        // 판매 목록을 보여준다
+                        
+                    }
+                    
+                    break;
+
+                case SM_ARMOR:
+                    /* code */
+                    break;
+                
+                default:
+                    break;
+                }
 
             }
             
