@@ -629,6 +629,7 @@ int main(){
                 // {
                 //     cout << i << "번째 " << tPlayer.tInventory.tItem[i] << endl;
                 // }
+                //
 
                 cout << "뒤로 가려면 1을 눌러주세요" << endl;
                 cin >> iMenu;
