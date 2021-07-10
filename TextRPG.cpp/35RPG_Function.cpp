@@ -237,6 +237,9 @@ struct _tagLevelUpStatus
     int iMPMax;
 };
 
+void SelectJob(_tagPlayer tPlayer, JOB iJob);
+void MonsterArr(_tagMonster tMonsterArr[]);
+
 int main()
 
 {
@@ -311,206 +314,13 @@ int main()
 
     cin.getline(tPlayer.strName, NAME_SIZE - 1);
 
-    int iJob = JOB_NONE;
+    JOB iJob = JOB_NONE;
 
-    while (iJob == JOB_NONE)
-
-    {
-
-        system("clear");
-
-        cout << "1. 기사" << endl;
-
-        cout << "2. 궁수" << endl;
-
-        cout << "3. 마법사" << endl;
-
-        cout << "직업을 선택하세요 : ";
-
-        cin >> iJob;
-
-        if (cin.fail())
-
-        {
-
-            cin.clear();
-
-            cin.ignore(1024, '\n');
-
-            continue;
-        }
-
-        else if (iJob <= JOB_NONE || iJob >= JOB_END)
-
-            iJob = JOB_NONE;
-    }
-
-    tPlayer.iLevel = 1;
-
-    tPlayer.iExp = 0;
-
-    tPlayer.eJob = (JOB)iJob;
-
-    tPlayer.tInventory.iGold = 10000;
-
-    switch (tPlayer.eJob)
-
-    {
-
-    case JOB_KNIGHT:
-
-        strcpy(tPlayer.strJobName, "기사");
-
-        tPlayer.iAttackMin = 5;
-
-        tPlayer.iAttackMax = 10;
-
-        tPlayer.iArmorMin = 15;
-
-        tPlayer.iArmorMax = 20;
-
-        tPlayer.iHPMax = 500;
-
-        tPlayer.iHP = 500;
-
-        tPlayer.iMP = 100;
-
-        tPlayer.iMPMax = 100;
-
-        break;
-
-    case JOB_ARCHER:
-
-        strcpy(tPlayer.strJobName, "궁수");
-
-        tPlayer.iAttackMin = 10;
-
-        tPlayer.iAttackMax = 15;
-
-        tPlayer.iArmorMin = 10;
-
-        tPlayer.iArmorMax = 15;
-
-        tPlayer.iHPMax = 400;
-
-        tPlayer.iHP = 400;
-
-        tPlayer.iMP = 200;
-
-        tPlayer.iMPMax = 200;
-
-        break;
-
-    case JOB_WIZARD:
-
-        strcpy(tPlayer.strJobName, "마법사");
-
-        tPlayer.iAttackMin = 15;
-
-        tPlayer.iAttackMax = 20;
-
-        tPlayer.iArmorMin = 5;
-
-        tPlayer.iArmorMax = 10;
-
-        tPlayer.iHPMax = 300;
-
-        tPlayer.iHP = 300;
-
-        tPlayer.iMP = 300;
-
-        tPlayer.iMPMax = 300;
-
-        break;
-    }
-
+    SelectJob(tPlayer,iJob);
     // 몬스터를 생성한다.
 
     _tagMonster tMonsterArr[MT_BACK - 1] = {};
-
-    // 고블린 생성
-
-    strcpy(tMonsterArr[0].strName, "고블린");
-
-    tMonsterArr[0].iAttackMin = 20;
-
-    tMonsterArr[0].iAttackMax = 30;
-
-    tMonsterArr[0].iArmorMin = 2;
-
-    tMonsterArr[0].iArmorMax = 5;
-
-    tMonsterArr[0].iHP = 100;
-
-    tMonsterArr[0].iHPMax = 100;
-
-    tMonsterArr[0].iMP = 10;
-
-    tMonsterArr[0].iMPMax = 10;
-
-    tMonsterArr[0].iLevel = 1;
-
-    tMonsterArr[0].iExp = 1000;
-
-    tMonsterArr[0].iGoldMin = 500;
-
-    tMonsterArr[0].iGoldMax = 1500;
-
-    // 트롤 생성
-
-    strcpy(tMonsterArr[1].strName, "트롤");
-
-    tMonsterArr[1].iAttackMin = 80;
-
-    tMonsterArr[1].iAttackMax = 130;
-
-    tMonsterArr[1].iArmorMin = 60;
-
-    tMonsterArr[1].iArmorMax = 90;
-
-    tMonsterArr[1].iHP = 2000;
-
-    tMonsterArr[1].iHPMax = 2000;
-
-    tMonsterArr[1].iMP = 100;
-
-    tMonsterArr[1].iMPMax = 100;
-
-    tMonsterArr[1].iLevel = 5;
-
-    tMonsterArr[1].iExp = 7000;
-
-    tMonsterArr[1].iGoldMin = 6000;
-
-    tMonsterArr[1].iGoldMax = 8000;
-
-    // 드래곤 생성
-
-    strcpy(tMonsterArr[2].strName, "드래곤");
-
-    tMonsterArr[2].iAttackMin = 250;
-
-    tMonsterArr[2].iAttackMax = 500;
-
-    tMonsterArr[2].iArmorMin = 200;
-
-    tMonsterArr[2].iArmorMax = 400;
-
-    tMonsterArr[2].iHP = 30000;
-
-    tMonsterArr[2].iHPMax = 30000;
-
-    tMonsterArr[2].iMP = 20000;
-
-    tMonsterArr[2].iMPMax = 20000;
-
-    tMonsterArr[2].iLevel = 10;
-
-    tMonsterArr[2].iExp = 30000;
-
-    tMonsterArr[2].iGoldMin = 20000;
-
-    tMonsterArr[2].iGoldMax = 50000;
+    MonsterArr(tMonsterArr);
 
     // 상점에서 판매할 아이템 목록을 생성한다.
 
@@ -1600,4 +1410,205 @@ int main()
     }
 
     return 0;
+}
+
+void SelectJob(_tagPlayer tPlayer, JOB iJob)
+{
+
+    while (iJob == JOB_NONE)
+
+    {
+        system("clear");
+
+        cout << "1. 기사" << endl;
+
+        cout << "2. 궁수" << endl;
+
+        cout << "3. 마법사" << endl;
+
+        cout << "직업을 선택하세요 : ";
+
+        cin >> (JOB)iJob;
+
+        if (cin.fail())
+
+        {
+
+            cin.clear();
+
+            cin.ignore(1024, '\n');
+
+            continue;
+        }
+
+        else if (iJob <= JOB_NONE || iJob >= JOB_END)
+
+            iJob = JOB_NONE;
+    }
+
+    tPlayer.iLevel = 1;
+
+    tPlayer.iExp = 0;
+
+    tPlayer.eJob = (JOB)iJob;
+
+    tPlayer.tInventory.iGold = 10000;
+
+    switch (tPlayer.eJob)
+
+    {
+
+    case JOB_KNIGHT:
+
+        strcpy(tPlayer.strJobName, "기사");
+
+        tPlayer.iAttackMin = 5;
+
+        tPlayer.iAttackMax = 10;
+
+        tPlayer.iArmorMin = 15;
+
+        tPlayer.iArmorMax = 20;
+
+        tPlayer.iHPMax = 500;
+
+        tPlayer.iHP = 500;
+
+        tPlayer.iMP = 100;
+
+        tPlayer.iMPMax = 100;
+
+        break;
+
+    case JOB_ARCHER:
+
+        strcpy(tPlayer.strJobName, "궁수");
+
+        tPlayer.iAttackMin = 10;
+
+        tPlayer.iAttackMax = 15;
+
+        tPlayer.iArmorMin = 10;
+
+        tPlayer.iArmorMax = 15;
+
+        tPlayer.iHPMax = 400;
+
+        tPlayer.iHP = 400;
+
+        tPlayer.iMP = 200;
+
+        tPlayer.iMPMax = 200;
+
+        break;
+
+    case JOB_WIZARD:
+
+        strcpy(tPlayer.strJobName, "마법사");
+
+        tPlayer.iAttackMin = 15;
+
+        tPlayer.iAttackMax = 20;
+
+        tPlayer.iArmorMin = 5;
+
+        tPlayer.iArmorMax = 10;
+
+        tPlayer.iHPMax = 300;
+
+        tPlayer.iHP = 300;
+
+        tPlayer.iMP = 300;
+
+        tPlayer.iMPMax = 300;
+
+        break;
+    }
+}
+
+void MonsterArr(_tagMonster tMonsterArr[])
+{
+    // 고블린 생성
+
+    strcpy(tMonsterArr[0].strName, "고블린");
+
+    tMonsterArr[0].iAttackMin = 20;
+
+    tMonsterArr[0].iAttackMax = 30;
+
+    tMonsterArr[0].iArmorMin = 2;
+
+    tMonsterArr[0].iArmorMax = 5;
+
+    tMonsterArr[0].iHP = 100;
+
+    tMonsterArr[0].iHPMax = 100;
+
+    tMonsterArr[0].iMP = 10;
+
+    tMonsterArr[0].iMPMax = 10;
+
+    tMonsterArr[0].iLevel = 1;
+
+    tMonsterArr[0].iExp = 1000;
+
+    tMonsterArr[0].iGoldMin = 500;
+
+    tMonsterArr[0].iGoldMax = 1500;
+
+    // 트롤 생성
+
+    strcpy(tMonsterArr[1].strName, "트롤");
+
+    tMonsterArr[1].iAttackMin = 80;
+
+    tMonsterArr[1].iAttackMax = 130;
+
+    tMonsterArr[1].iArmorMin = 60;
+
+    tMonsterArr[1].iArmorMax = 90;
+
+    tMonsterArr[1].iHP = 2000;
+
+    tMonsterArr[1].iHPMax = 2000;
+
+    tMonsterArr[1].iMP = 100;
+
+    tMonsterArr[1].iMPMax = 100;
+
+    tMonsterArr[1].iLevel = 5;
+
+    tMonsterArr[1].iExp = 7000;
+
+    tMonsterArr[1].iGoldMin = 6000;
+
+    tMonsterArr[1].iGoldMax = 8000;
+
+    // 드래곤 생성
+
+    strcpy(tMonsterArr[2].strName, "드래곤");
+
+    tMonsterArr[2].iAttackMin = 250;
+
+    tMonsterArr[2].iAttackMax = 500;
+
+    tMonsterArr[2].iArmorMin = 200;
+
+    tMonsterArr[2].iArmorMax = 400;
+
+    tMonsterArr[2].iHP = 30000;
+
+    tMonsterArr[2].iHPMax = 30000;
+
+    tMonsterArr[2].iMP = 20000;
+
+    tMonsterArr[2].iMPMax = 20000;
+
+    tMonsterArr[2].iLevel = 10;
+
+    tMonsterArr[2].iExp = 30000;
+
+    tMonsterArr[2].iGoldMin = 20000;
+
+    tMonsterArr[2].iGoldMax = 50000;
 }
